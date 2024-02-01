@@ -9,7 +9,6 @@
       </li>
     </ul>
 
-    <!-- Form for creating or updating a todo -->
     <form @submit.prevent="addOrUpdateTodo">
       <label>Task: </label>
       <input v-model="newTodo.task" required />
@@ -23,7 +22,6 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
 import axios from "axios";
 
 const apiData = ref([]);
@@ -42,13 +40,10 @@ const fetchTodos = async () => {
 const addOrUpdateTodo = async () => {
   try {
     if (editingTodo.value) {
-      // Update existing todo
       await axios.put(`http://localhost:8080/api/todos/${editingTodo.value._id}`, newTodo.value);
     } else {
-      // Add new todo
       await axios.post("http://localhost:8080/api/todos", newTodo.value);
     }
-    // Clear the form and fetch updated todos
     newTodo.value = { task: "", description: "", completed: false };
     editingTodo.value = null;
     fetchTodos();
@@ -58,7 +53,6 @@ const addOrUpdateTodo = async () => {
 };
 
 const editTodo = (todo) => {
-  // Set the editingTodo and populate the form with existing values
   editingTodo.value = todo;
   newTodo.value = { ...todo };
 };
@@ -66,7 +60,6 @@ const editTodo = (todo) => {
 const deleteTodo = async (todoId) => {
   try {
     await axios.delete(`http://localhost:8080/api/todos/${todoId}`);
-    // Fetch updated todos after deletion
     fetchTodos();
   } catch (error) {
     console.error("Error deleting todo:", error);
