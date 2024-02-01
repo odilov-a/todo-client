@@ -16,7 +16,7 @@
       <input v-model="newTodo.description" required />
       <label>Completed: </label>
       <input type="checkbox" v-model="newTodo.completed" />
-      <button type="submit">{{ editingTodo ? 'Update' : 'Add' }} Todo</button>
+      <button type="submit">{{ editingTodo ? "Update" : "Add" }} Todo</button>
     </form>
   </div>
 </template>
@@ -40,7 +40,10 @@ const fetchTodos = async () => {
 const addOrUpdateTodo = async () => {
   try {
     if (editingTodo.value) {
-      await axios.put(`http://localhost:8080/api/todos/${editingTodo.value._id}`, newTodo.value);
+      await axios.put(
+        `http://localhost:8080/api/todos/${editingTodo.value._id}`,
+        newTodo.value
+      );
     } else {
       await axios.post("http://localhost:8080/api/todos", newTodo.value);
     }
