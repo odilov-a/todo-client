@@ -1,6 +1,18 @@
 <template>
   <div class="container mx-auto p-6">
     <h1 class="text-3xl font-bold mb-6">Todo API</h1>
+    <form @submit.prevent="addOrUpdateTodo" class="mt-4">
+      <label class="block mb-2">Task:</label>
+      <input v-model="newTodo.task" required class="border border-slate-600 px-3 py-2 mb-2" />
+      <label class="block mb-2">Description:</label>
+      <textarea v-model="newTodo.description" required class="border border-slate-600 px-3 py-2 mb-2" />
+      <label class="block mb-2">Completed:</label>
+      <input type="checkbox" v-model="newTodo.completed" class="mr-2" />
+      <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded mt-4">
+        {{ editingTodo ? "Update" : "Add" }} Todo
+      </button>
+    </form>
+    <br/>
     <table class="min-w-full border border-slate-500">
       <thead>
         <tr>
@@ -27,18 +39,6 @@
         </tr>
       </tbody>
     </table>
-
-    <form @submit.prevent="addOrUpdateTodo" class="mt-4">
-      <label class="block mb-2">Task:</label>
-      <input v-model="newTodo.task" required class="border border-slate-600 px-3 py-2 mb-2" />
-      <label class="block mb-2">Description:</label>
-      <input v-model="newTodo.description" required class="border border-slate-600 px-3 py-2 mb-2" />
-      <label class="block mb-2">Completed:</label>
-      <input type="checkbox" v-model="newTodo.completed" class="mr-2" />
-      <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded mt-4">
-        {{ editingTodo ? "Update" : "Add" }} Todo
-      </button>
-    </form>
   </div>
 </template>
 
