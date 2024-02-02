@@ -7,27 +7,14 @@
   </nav>
   <div class="container mx-auto p-6">
     <form @submit.prevent="addOrUpdateTodo" class="mt-4">
-      <label class="block mb-2">Task:</label>
-      <input
-        v-model="newTodo.task"
-        required
-        placeholder="Task name"
-        class="border border-slate-600 px-3 py-2 mb-2 w-full"
-      />
-      <label class="block mb-2">Description:</label>
-      <textarea
-        v-model="newTodo.description"
-        required
-        placeholder="Task description"
-        class="border border-slate-600 px-3 py-2 mb-2 w-full h-20"
-      />
+      <label class="block mb-2 font-bold">Task:</label>
+      <input v-model="newTodo.task" required placeholder="Task name" class="border border-slate-600 px-3 py-2 mb-2 w-full" />
+      <label class="block mb-2 font-bold">Description:</label>
+      <textarea v-model="newTodo.description" required placeholder="Task description" class="border border-slate-600 px-3 py-2 mb-2 w-full h-20" />
       <div class="flex items-center mr-2">
-        <label class="mr-2">Completed:</label>
+        <label class="mr-2 font-bold">Completed:</label>
         <input type="checkbox" v-model="newTodo.completed" class="mr-2" />
-        <button
-          type="submit"
-          class="bg-green-500 text-white px-4 py-2 rounded mt-4"
-        >
+        <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded mt-4">
           {{ editingTodo ? "Update" : "Add" }} Todo
         </button>
       </div>
@@ -46,31 +33,20 @@
       <tbody>
         <tr v-for="item in apiData" :key="item._id">
           <td class="py-2 px-4 border border-slate-700">
-            <input
-              type="checkbox"
-              :checked="item.completed"
-              @change="updateStatus(item)"
-              :disabled="item.completed"
-              class="form-checkbox text-blue-500"
-            />
+            <input type="checkbox" :checked="item.completed" @change="updateStatus(item)" :disabled="item.completed"
+              class="form-checkbox text-blue-500" />
           </td>
           <td class="py-2 px-4 border border-slate-700">{{ item.task }}</td>
           <td class="py-2 px-4 border border-slate-700">
             {{ item.description }}
           </td>
           <td class="py-2 px-4 border border-slate-700">
-            <button
-              @click="editTodo(item)"
-              class="bg-blue-500 text-white px-4 py-1 rounded"
-            >
+            <button @click="editTodo(item)" class="bg-blue-500 text-white px-4 py-1 rounded">
               Edit
             </button>
           </td>
           <td class="py-2 px-4 border border-slate-700">
-            <button
-              @click="deleteTodo(item._id)"
-              class="bg-red-500 text-white px-4 py-1 rounded"
-            >
+            <button @click="deleteTodo(item._id)" class="bg-red-500 text-white px-4 py-1 rounded">
               Delete
             </button>
           </td>
