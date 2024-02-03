@@ -3,8 +3,12 @@
     <div class="container mx-auto flex justify-between items-center">
       <h1 class="text-4xl font-extrabold tracking-wider">Todo App</h1>
       <div class="space-x-4">
-        <NuxtLink href="/graphs" class="text-xl font-semibold">Graphs Page</NuxtLink>
-        <NuxtLink href="/docs" class="text-xl font-semibold">Docs Page</NuxtLink>
+        <NuxtLink href="/graphs" class="text-xl font-semibold"
+          >Graphs Page</NuxtLink
+        >
+        <NuxtLink href="/docs" class="text-xl font-semibold"
+          >Docs Page</NuxtLink
+        >
       </div>
     </div>
   </nav>
@@ -12,15 +16,26 @@
   <div class="container mx-auto p-6">
     <form @submit.prevent="addOrUpdateTodo" class="mt-4">
       <label class="block mb-2 font-bold">Task:</label>
-      <input v-model="newTodo.task" required placeholder="Task name"
-        class="border border-slate-600 px-3 py-2 mb-2 w-full" />
+      <input
+        v-model="newTodo.task"
+        required
+        placeholder="Task name"
+        class="border border-slate-600 px-3 py-2 mb-2 w-full"
+      />
       <label class="block mb-2 font-bold">Description:</label>
-      <textarea v-model="newTodo.description" required placeholder="Task description"
-        class="border border-slate-600 px-3 py-2 mb-2 w-full h-20" />
+      <textarea
+        v-model="newTodo.description"
+        required
+        placeholder="Task description"
+        class="border border-slate-600 px-3 py-2 mb-2 w-full h-20"
+      />
       <div class="flex items-center mr-2">
         <label class="mr-2 font-bold">Completed:</label>
         <input type="checkbox" v-model="newTodo.completed" class="mr-2" />
-        <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded mt-4">
+        <button
+          type="submit"
+          class="bg-green-500 text-white px-4 py-2 rounded mt-4"
+        >
           {{ editingTodo ? "Update" : "Add" }} Todo
         </button>
       </div>
@@ -39,20 +54,31 @@
       <tbody>
         <tr v-for="item in apiData" :key="item._id">
           <td class="py-2 px-4 border border-slate-700">
-            <input type="checkbox" :checked="item.completed" @change="updateStatus(item)" :disabled="item.completed"
-              class="form-checkbox text-blue-500" />
+            <input
+              type="checkbox"
+              :checked="item.completed"
+              @change="updateStatus(item)"
+              :disabled="item.completed"
+              class="form-checkbox text-blue-500"
+            />
           </td>
           <td class="py-2 px-4 border border-slate-700">{{ item.task }}</td>
           <td class="py-2 px-4 border border-slate-700">
             {{ item.description }}
           </td>
           <td class="py-2 px-4 border border-slate-700">
-            <button @click="editTodo(item)" class="bg-blue-500 text-white px-4 py-1 rounded">
+            <button
+              @click="editTodo(item)"
+              class="bg-blue-500 text-white px-4 py-1 rounded"
+            >
               Edit
             </button>
           </td>
           <td class="py-2 px-4 border border-slate-700">
-            <button @click="deleteTodo(item._id)" class="bg-red-500 text-white px-4 py-1 rounded">
+            <button
+              @click="deleteTodo(item._id)"
+              class="bg-red-500 text-white px-4 py-1 rounded"
+            >
               Delete
             </button>
           </td>
@@ -64,6 +90,7 @@
 
 <script setup>
 import axios from "axios";
+import Swal from "sweetalert2/dist/sweetalert2.all.min.js";
 
 const apiData = ref([]);
 const newTodo = ref({ task: "", description: "", completed: false });
@@ -114,10 +141,24 @@ const updateStatus = async (task) => {
 
 const deleteTodo = async (todoId) => {
   try {
-    await axios.delete(`http://localhost:8080/api/todos/${todoId}`);
-    fetchTodos();
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    });
+
+    if (result.isConfirmed) {
+      await axios.delete(`http://localhost:8080/api/todos/${todoId}`);
+      fetchTodos();
+      Swal.fire("Deleted!", "Your task has been deleted.", "success");
+    }
   } catch (error) {
     console.error("Error deleting todo:", error);
+    Swal.fire("Error", "There was an error deleting the task.", "error");
   }
 };
 
