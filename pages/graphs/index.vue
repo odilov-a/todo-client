@@ -17,7 +17,7 @@ const myChartCanvas = ref(null);
 
 const fetchData = async () => {
   try {
-    const response = await fetch("http://localhost:8080/api/todos");
+    const response = await fetch("https://todo-api-uvnz.onrender.com/api/todos");
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }

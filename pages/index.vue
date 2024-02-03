@@ -98,7 +98,7 @@ const editingTodo = ref(null);
 
 const fetchTodos = async () => {
   try {
-    const response = await axios.get("http://localhost:8080/api/todos");
+    const response = await axios.get("https://todo-api-uvnz.onrender.com/api/todos");
     apiData.value = response.data;
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -109,11 +109,11 @@ const addOrUpdateTodo = async () => {
   try {
     if (editingTodo.value) {
       await axios.put(
-        `http://localhost:8080/api/todos/${editingTodo.value._id}`,
+        `https://todo-api-uvnz.onrender.com/api/todos/${editingTodo.value._id}`,
         newTodo.value
       );
     } else {
-      await axios.post("http://localhost:8080/api/todos", newTodo.value);
+      await axios.post("https://todo-api-uvnz.onrender.com/api/todos", newTodo.value);
     }
     newTodo.value = { task: "", description: "", completed: false };
     editingTodo.value = null;
@@ -130,7 +130,7 @@ const editTodo = (todo) => {
 
 const updateStatus = async (task) => {
   try {
-    await axios.put(`http://localhost:8080/api/todos/${task._id}`, {
+    await axios.put(`https://todo-api-uvnz.onrender.com/api/todos/${task._id}`, {
       completed: !task.completed,
     });
     fetchTodos();
@@ -152,7 +152,7 @@ const deleteTodo = async (todoId) => {
     });
 
     if (result.isConfirmed) {
-      await axios.delete(`http://localhost:8080/api/todos/${todoId}`);
+      await axios.delete(`https://todo-api-uvnz.onrender.com/api/todos/${todoId}`);
       fetchTodos();
       Swal.fire("Deleted!", "Your task has been deleted.", "success");
     }

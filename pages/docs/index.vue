@@ -11,31 +11,31 @@
         <h2 class="text-2xl font-bold mb-2 text-blue-600">
           "GET method" for all todos
         </h2>
-        <p class="text-gray-700">http://localhost:8080/api/todos</p>
+        <p class="text-gray-700">https://todo-api-uvnz.onrender.com/api/todos</p>
       </div>
       <div class="mb-8">
         <h2 class="text-2xl font-bold mb-2 text-green-600">
           "GET method" for one todo with id
         </h2>
-        <p class="text-gray-700">http://localhost:8080/api/todos/:id</p>
+        <p class="text-gray-700">https://todo-api-uvnz.onrender.com/api/todos/:id</p>
       </div>
       <div class="mb-8">
         <h2 class="text-2xl font-bold mb-2 text-yellow-600">
           "POST method" for create todo
         </h2>
-        <p class="text-gray-700">http://localhost:8080/api/todos</p>
+        <p class="text-gray-700">https://todo-api-uvnz.onrender.com/api/todos</p>
       </div>
       <div class="mb-8">
         <h2 class="text-2xl font-bold mb-2 text-yellow-600">
           "PUT method" for update one todo with id
         </h2>
-        <p class="text-gray-700">http://localhost:8080/api/todos/:id</p>
+        <p class="text-gray-700">https://todo-api-uvnz.onrender.com/api/todos/:id</p>
       </div>
       <div class="mb-8">
         <h2 class="text-2xl font-bold mb-2 text-red-600">
           "DELETE method" for delete one todo with id
         </h2>
-        <p class="text-gray-700">http://localhost:8080/api/todos/:id</p>
+        <p class="text-gray-700">https://todo-api-uvnz.onrender.com/api/todos/:id</p>
       </div>
     </div>
   </div>
