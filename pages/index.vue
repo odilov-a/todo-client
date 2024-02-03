@@ -1,16 +1,22 @@
 <template>
   <nav class="bg-gray-800 p-4 text-white">
     <div class="container mx-auto flex justify-between items-center">
-      <h1 class="text-3xl font-bold">Todo App</h1>
-      <NuxtLink to="/docs" class="text-xl font-bold">Docs Page</NuxtLink>
+      <h1 class="text-4xl font-extrabold tracking-wider">Todo App</h1>
+      <div class="space-x-4">
+        <NuxtLink href="/graphs" class="text-xl font-semibold">Graphs Page</NuxtLink>
+        <NuxtLink href="/docs" class="text-xl font-semibold">Docs Page</NuxtLink>
+      </div>
     </div>
   </nav>
+
   <div class="container mx-auto p-6">
     <form @submit.prevent="addOrUpdateTodo" class="mt-4">
       <label class="block mb-2 font-bold">Task:</label>
-      <input v-model="newTodo.task" required placeholder="Task name" class="border border-slate-600 px-3 py-2 mb-2 w-full" />
+      <input v-model="newTodo.task" required placeholder="Task name"
+        class="border border-slate-600 px-3 py-2 mb-2 w-full" />
       <label class="block mb-2 font-bold">Description:</label>
-      <textarea v-model="newTodo.description" required placeholder="Task description" class="border border-slate-600 px-3 py-2 mb-2 w-full h-20" />
+      <textarea v-model="newTodo.description" required placeholder="Task description"
+        class="border border-slate-600 px-3 py-2 mb-2 w-full h-20" />
       <div class="flex items-center mr-2">
         <label class="mr-2 font-bold">Completed:</label>
         <input type="checkbox" v-model="newTodo.completed" class="mr-2" />

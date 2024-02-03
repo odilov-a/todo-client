@@ -2,8 +2,8 @@
   <div class="bg-gray-100 min-h-screen">
     <nav class="bg-gray-800 p-4 text-white">
       <div class="container mx-auto flex justify-between items-center">
-        <h1 class="text-3xl font-bold">Api Docs</h1>
-        <NuxtLink to="/" class="text-xl font-bold">Main Page</NuxtLink>
+        <h1 class="text-4xl font-extrabold tracking-wider">Api Docs</h1>
+        <NuxtLink to="/" class="text-xl font-semibold">Main Page</NuxtLink>
       </div>
     </nav>
     <div class="container mx-auto p-6 mt-8">
