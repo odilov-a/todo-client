@@ -6,10 +6,7 @@
         <NuxtLink to="/" class="text-xl font-semibold">Main Page</NuxtLink>
       </div>
     </nav>
-    <canvas
-      ref="myChartCanvas"
-      style="width: 100%; max-width: 700px; max-height: 600px"
-    ></canvas>
+    <canvas ref="myChartCanvas" style="width: 100%; max-width: 700px; max-height: 600px"></canvas>
   </div>
 </template>
 
@@ -73,7 +70,7 @@ const createChart = (labels, datasets) => {
       scales: {
         x: {
           type: "category",
-          labels: labels, // Ensure that labels are strings
+          labels: labels,
           rotation: 45,
         },
         y: {
